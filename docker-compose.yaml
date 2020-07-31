@@ -33,7 +33,6 @@ services:
       - SLEEKFORUM_DB_HOST=db
     env_file:
       - ./sleekforum/configs/env/nginx.env
-      - ./sleekforum/configs/env/postgres.env
       - ./sleekforum/configs/env/sleekforum.env
     networks:
       - database
