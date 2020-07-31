@@ -15,7 +15,7 @@ services:
       - ./sleekfolio/configs/nginx/conf.d:/etc/nginx/conf.d
       - ./sleekfolio/src:/srv/http/sleekfolio:z
     networks:
-      - database
+      - db
       - webserver
     depends_on:
       - postgres
