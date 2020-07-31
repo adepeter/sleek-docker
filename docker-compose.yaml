@@ -22,7 +22,7 @@ services:
 
   web:
     build:
-      context: sleekforum
+      context: sleekforum/src
       args:
         dev_env: production
     restart: unless-stopped
