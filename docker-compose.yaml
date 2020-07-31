@@ -49,7 +49,6 @@ services:
       - ./sleekpostgres/configs/env/postgres.env
     volumes:
       - "pg_data:/var/lib/postgresql/data"
-      - "./postgres/docker-postgresql-multiple-databases.sh:/docker-entrypoint-initdb.d"
     ports:
       - "5432:5432"
 
@@ -63,8 +62,6 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin
       - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=5050
-    ports:
-      - "5000:5050"
     volumes:
       - "pgadmin4:/var/lib/pgadmin"
       - "pgadmin:/root/.pgadmin"
@@ -73,6 +70,8 @@ services:
       - webserver
     depends_on:
       - postgres
+    ports:
+    - "5050:5050"
 
   nginx-proxy:
     image: jwilder/nginx-proxy
