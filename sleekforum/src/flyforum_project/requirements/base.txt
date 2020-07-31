@@ -1,0 +1,8 @@
+uwsgi
+django
+psycopg2
+graphene-django
+django-mptt
+pillow
+django-graphql-jwt
+markdown

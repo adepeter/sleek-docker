@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+
+  sleekforum:
+    build:
+      context: src
+      args:
+        dev_env: production
+    networks:
+      - db
+      - webserver
+    env_file:
+      - ./configs/env/postgres.env
+      - ./configs/env/sleekforum.env
+    environment:
+      - SLEEKFORUM_DB_HOST=postgres
+    restart: unless-stopped
+    volumes:
+      - ./src:/srv/http/sleekforum:z
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    volumes:
+      - pg_data:/var/lib/postgres/data
+    restart: always
+    networks:
+      - db
+    env_file:
+      - ./configs/env/postgres.env
+
+  nginx:
+    build:
+      context: nginx
+    restart: always
+    volumes:
+      - ./configs/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./src/static:/srv/ftp/sleekforum/static:z
+      - ./src/media:/srv/ftp/sleekforum/media:z
+    ports:
+      - "4042:80"
+    depends_on:
+      - sleekforum
+    networks:
+      - webserver
+
+networks:
+  db:
+  webserver:
+
+volumes:
+  pg_data:

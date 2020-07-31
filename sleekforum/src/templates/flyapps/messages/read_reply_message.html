@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load message_tags %}
+{% load miscs_tags %}
+
+{% block title %}{{ message }}{% endblock %}
+
+{% block content %}
+    <main id="tt-pageContent" class="tt-offset-small">
+        <div class="container">
+            <div class="tt-messages-layout">
+                <div class="row no-gutters">
+                    {% active_messages_with_inclusion_tag request.user %}
+                    <div class="col-md-8">
+                        <div class="tt-title-content">
+                            <a href="#" class="tt-toggle-aside">
+                                <i class="tt-icon">
+                                    <svg class="icon">
+                                        <use xlink:href="#icon-arrow_left"></use>
+                                    </svg>
+                                </i>
+                            </a>
+                            <h2 class="tt-title">
+                                {% if message.starter == request.user %}
+                                    {{ message.recipient.get_display_name }}
+                                {% else %}
+                                    My conversations
+                                {% endif %}
+                            </h2>
+                            <div class="tt-description">
+                                {% if message.starter == request.user %}
+                                    {{ message.recipient.last_login | time_ago }}
+                                {% else %}
+                                    {{ message.starter.last_login | time_ago }}
+                                {% endif %}
+                            </div>
+                            <a href="#" class="tt-icon-link">
+                                <i class="tt-icon">
+                                    <svg class="icon">
+                                        <use xlink:href="#notification"></use>
+                                    </svg>
+                                </i>
+                            </a>
+                        </div>
+                        <div class="tt-list-time-topic">
+                            {% if page_obj.number == 1 %}
+                                <div class="tt-item-title">
+                                    <span>{{ message.created }} (Original message)</span>
+                                </div>
+                                <div class="tt-item">
+                                    <div class="tt-col-avatar">
+                                        <svg class="tt-icon">
+                                            <use xlink:href="#icon-ava-{{ message.starter.slug | first_char }}">
+                                            </use>
+                                        </svg>
+                                    </div>
+                                    <div class="tt-col-description">
+                                        <h4 class="tt-title">
+                                            <a href="#">{{ message.starter.get_display_name }}</a>
+                                            <span class="time">{{ message.created }}</span>
+                                        </h4>
+                                        <p>{{ message.text }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% with page_obj as replies %}
+                            {% for reply in replies %}
+                                <div class="tt-item-title"><span>{{ reply.modified }}</span></div>
+                                <div class="tt-item">
+                                    <div class="tt-col-avatar">
+                                        <svg class="tt-icon">
+                                            <use xlink:href="#icon-ava-{{ reply.sender.slug | first_char }}">
+                                            </use>
+                                        </svg>
+                                    </div>
+                                    <div class="tt-col-description">
+                                        <h4 class="tt-title">
+                                            <a href="#">
+                                                {% if reply.sender == request.user %}
+                                                    Me
+                                                {% else %}
+                                                    {{ reply.sender.get_display_name }}
+                                                {% endif %}
+                                            </a>
+                                            <span class="time">{{ reply.created }}</span></h4>
+                                        <p>{{ reply.text }}</p>
+                                    </div>
+                                    {% empty %}
+                                    No replies yet
+                                </div>
+                            {% endfor %}
+                        {% endwith %}
+                        </div>
+                        <div class="tt-wrapper-inner">
+                            <div class="pt-editor form-default">
+                                <div class="pt-row">
+                                    <div class="col-left">
+                                        <ul class="pt-edit-btn">
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-quote"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-bold"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-italic"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-share_topic"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-blockquote"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-performatted"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li class="hr"></li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-upload_files"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-bullet_list"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-heading"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-horizontal_line"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-emoticon"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-settings"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn-icon">
+                                                    <svg class="tt-icon">
+                                                        <use xlink:href="#icon-color_picker"></use>
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.text }}
+                                </div>
+                                <div class="pt-row">
+                                    <div class="col-auto ml-auto">
+                                        <a href="#" class="btn btn-secondary btn-custom">Send</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

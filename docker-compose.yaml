@@ -1,0 +1,102 @@
+version: "3.8"
+services:
+  sleekfolio:
+    build:
+      context: sleekfolio
+    environment:
+      - VIRTUAL_HOST=folio.sleekforum.com
+      - VIRTUAL_PROTO=uwsgi
+      - LETSENCRYPT_HOST=folio.sleekforum.com
+    env_file:
+      - ./sleekfolio/configs/env/postgres.env
+    restart: unless-stopped
+    volumes:
+      - /var/www/sleekfolio/backup:/var/lib/postgres/data
+      - ./sleekfolio/configs/nginx/conf.d:/etc/nginx/conf.d
+      - ./sleekfolio/src:/srv/http/sleekfolio:z
+    networks:
+      - database
+      - webserver
+    depends_on:
+      - db
+
+  web:
+    build:
+      context: sleekforum
+      args:
+        dev_env: production
+    restart: unless-stopped
+    volumes:
+    - "./sleekforum/src:/srv/http/sleekforum:z"
+    environment:
+      - SSL_POLICY=Mozilla-Modern
+      - SLEEKFORUM_DB_HOST=db
+    env_file:
+      - ./sleekforum/configs/env/nginx.env
+      - ./sleekforum/configs/env/postgres.env
+      - ./sleekforum/configs/env/sleekforum.env
+    networks:
+      - database
+      - webserver
+    depends_on:
+      - db
+      - nginx-lets-encrypt
+
+  db:
+    image: postgres
+    networks:
+      - database
+    env_file:
+      - ./sleekfolio/configs/env/postgres.env
+      - ./sleekpostgres/configs/env/postgres.env
+    volumes:
+    - "pg_data:/var/lib/postgresql/data"
+    ports:
+    - "5432:5432"
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+    networks:
+      - webserver
+    restart: always
+    environment:
+      - ENABLE_IPV6=true
+    volumes:
+    - "nginx-certs:/etc/nginx/certs"
+    - "nginx-html:/usr/share/nginx/html"
+    - "/var/run/docker.sock:/tmp/docker.sock:ro"
+    - "./sleeknginx/conf.d:/etc/nginx/conf.d"
+    - "./sleeknginx/vhost.d:/etc/nginx/vhost.d"
+    - "./sleekforum/src/static:/srv/ftp/sleekforum/static:z"
+    - "./sleekforum/src/media:/srv/ftp/sleekforum/media:z"
+    - "./sleekfolio/src/static:/srv/ftp/sleekfolio/static:z"
+    - "./sleekfolio/src/media:/srv/ftp/sleekfolio/media:z"
+    ports:
+    - "80:80"
+    - "443:443"
+
+  nginx-lets-encrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    networks:
+      - webserver
+    env_file:
+      - ./sleekforum/configs/env/companion.env
+    depends_on:
+      - nginx-proxy
+    volumes:
+    - "nginx-certs:/etc/nginx/certs"
+    - "nginx-html:/usr/share/nginx/html"
+    - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    - "./sleeknginx/vhost.d:/etc/nginx/vhost.d"
+
+
+networks:
+  database:
+  webserver:
+
+volumes:
+  nginx-certs:
+  nginx-html:
+  pg_data:

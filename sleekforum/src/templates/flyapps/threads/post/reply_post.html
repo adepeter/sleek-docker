@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load miscs_tags%}
+
+{% block title %}{{ parent.title }}{% endblock %}
+
+{% block content %}
+    <main id="tt-pageContent">
+        <div class="container">
+            <div class="tt-single-topic-list">
+                <div class="tt-item">
+                    <div class="tt-single-topic">
+                        <div class="tt-item-header pt-noborder">
+                            <div class="tt-item-info info-top">
+                                <div class="tt-avatar-icon">
+                                    <i class="tt-icon">
+                                        <svg>
+                                            <use xlink:href="#icon-ava-{{ parent.thread.starter.username | first_char }}"></use>
+                                        </svg>
+                                    </i>
+                                </div>
+                                <div class="tt-item-title">
+                                    <a href="{{ parent.thread.get_absolute_url }}">{{ parent.thread.title }}</a>
+                                </div>
+                                <a class="tt-info-time">
+                                    <i class="tt-icon">
+                                        <svg>
+                                            <use xlink:href="#icon-time"></use>
+                                        </svg>
+                                    </i>{{ parent.thread.modified | date:'d M, Y - g:s A' }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tt-item-description">
+                            Original post:
+                            <div class="topic-inner-list">
+                                <div class="topic-inner">
+                                    <div class="topic-inner-title">
+                                        <div class="topic-inner-avatar">
+                                            <i class="tt-icon">
+                                                <svg>
+                                                    <use xlink:href="#icon-ava-{{ parent.user.username | first_char }}"></use>
+                                                </svg>
+                                            </i>
+                                        </div>
+                                        <div class="topic-inner-title"><a href="#">{{ parent.user.username }}</a></div>
+                                    </div>
+                                    <div class="topic-inner-description">
+                                        {{ parent.content | linebreaks }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tt-wrapper-inner">
+                {% include 'flyapps/threads/post/_partials/_create_edit_post_form.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="de0cec64-a791-41cd-af54-13ad31a2d890" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyforum_project/requirements/base.txt" beforeDir="false" afterPath="$PROJECT_DIR$/flyforum_project/requirements/base.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyforum_project/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyforum_project/settings/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyforum_project/settings/local.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyforum_project/settings/local.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyforum_project/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyforum_project/settings/production.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyforum_project/settings/secrets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uwsgi.ini" beforeDir="false" afterPath="$PROJECT_DIR$/uwsgi.ini" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="BashSupport Pro Bash" />
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="9de9bd79-b557-49fd-af5a-84d76098c77c" />
+  <component name="ProjectId" id="1dTGVTpwZdqIuZPV3CX1nDRAb9U" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/css" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adepeter\Desktop\django\pekpage\templates\flyapps\users\auth\password" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\adepeter\Desktop\django\pekpage\static\css" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="hell" type="BashProRunConfiguration" temporary="true">
+      <option name="scriptPath" value="$PROJECT_DIR$/flyapps/graphql/hell" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="BashSupport Pro.hell" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de0cec64-a791-41cd-af54-13ad31a2d890" name="Default Changelist" comment="" />
+      <created>1592441693051</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592441693051</updated>
+      <workItem from="1592441697428" duration="396000" />
+      <workItem from="1592556969247" duration="6627000" />
+      <workItem from="1592567392914" duration="33000" />
+      <workItem from="1592595498090" duration="1746000" />
+      <workItem from="1592681421703" duration="2196000" />
+      <workItem from="1593461344040" duration="172000" />
+      <workItem from="1593461615710" duration="3136000" />
+      <workItem from="1593501720628" duration="7015000" />
+      <workItem from="1593643548308" duration="13255000" />
+      <workItem from="1593793917205" duration="2935000" />
+      <workItem from="1593797185340" duration="18111000" />
+      <workItem from="1593947520638" duration="9000" />
+      <workItem from="1594073686512" duration="1417000" />
+      <workItem from="1594303502866" duration="85000" />
+      <workItem from="1594398330244" duration="42000" />
+      <workItem from="1594398942867" duration="28000" />
+      <workItem from="1594402557093" duration="1160000" />
+      <workItem from="1594453391180" duration="61000" />
+      <workItem from="1594483232700" duration="91000" />
+      <workItem from="1594825679436" duration="1930000" />
+      <workItem from="1594840098319" duration="2195000" />
+      <workItem from="1595148853984" duration="108000" />
+      <workItem from="1595148986183" duration="120000" />
+      <workItem from="1595149209910" duration="427000" />
+      <workItem from="1595149654531" duration="172000" />
+      <workItem from="1595931640989" duration="410000" />
+      <workItem from="1595934472344" duration="802000" />
+      <workItem from="1595935731341" duration="20483000" />
+      <workItem from="1595966477093" duration="8627000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="592" y="305" key="#Shellcheck" timestamp="1595149773288">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="592" y="305" key="#Shellcheck/0.0.1536.824@0.0.1536.824" timestamp="1595149773288" />
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1595149771773">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1595149771773" />
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1595149639591">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595149639591" />
+    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1595149639591">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1595149639591" />
+    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1595149639591">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1595149639591" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1595149639591">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1595149639591" />
+    <state x="349" y="147" key="IDE.errors.dialog" timestamp="1593644333950">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="147" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1593644333950" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1595932056546">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1595932056546" />
+  </component>
+</project>

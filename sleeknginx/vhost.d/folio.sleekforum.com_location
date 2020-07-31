@@ -1,0 +1,9 @@
+location /static/ {
+  alias /srv/ftp/sleekfolio/static/;
+  add_header Access-Control-Allow-Origin *;
+}
+
+location /media/ {
+  alias /srv/ftp/sleekfolio/media/;
+  add_header Access-Control-Allow-Origin *;
+}
