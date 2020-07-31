@@ -118,3 +118,4 @@ volumes:
   nginx-html:
   pg_data:
   pgadmin4:
+  pgadmin:
