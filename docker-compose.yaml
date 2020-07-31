@@ -18,9 +18,9 @@ services:
       - database
       - webserver
     depends_on:
-      - db
+      - postgres
 
-  web:
+  sleekforum:
     build:
       context: sleekforum/src
       args:
@@ -30,26 +30,29 @@ services:
     - "./sleekforum/src:/srv/http/sleekforum:z"
     environment:
       - SSL_POLICY=Mozilla-Modern
-      - SLEEKFORUM_DB_HOST=db
+      - SLEEKFORUM_DB_HOST=postgres
     env_file:
       - ./sleekforum/configs/env/nginx.env
       - ./sleekforum/configs/env/sleekforum.env
     networks:
-      - database
+      - db
       - webserver
     depends_on:
-      - db
+      - postgres
       - nginx-lets-encrypt
 
-  db:
-    image: postgres
+  postgres:
+    build:
+      context: sleekpostgres
     networks:
-      - database
+      - db
+    environment:
+      - POSTGRES_MULTIPLE_DATABASES=sleekfolio,sleekforum
     env_file:
-      - ./sleekfolio/configs/env/postgres.env
       - ./sleekpostgres/configs/env/postgres.env
     volumes:
     - "pg_data:/var/lib/postgresql/data"
+    - "./postgres/docker-postgresql-multiple-databases.sh:/docker-entrypoint-initdb.d"
     ports:
     - "5432:5432"
 
@@ -92,7 +95,7 @@ services:
 
 
 networks:
-  database:
+  db:
   webserver:
 
 volumes:
