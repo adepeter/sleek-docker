@@ -57,6 +57,9 @@ services:
     image: dpage/pgadmin4
     restart: always
     environment:
+      - VIRTUAL_HOST=pgadmin.sleekforum.com
+      - LETSENCRYPT_HOST=pgadmin.sleekforum.com
+      - VIRTUAL_PORT=5050
       - PGADMIN_DEFAULT_EMAIL=admin
       - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=5050
@@ -67,6 +70,7 @@ services:
       - "pgadmin:/root/.pgadmin"
     networks:
       - db
+      - webserver
     depends_on:
       - postgres
 
