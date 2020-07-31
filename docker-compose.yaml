@@ -59,10 +59,12 @@ services:
     environment:
       - LETSENCRYPT_HOST=pgadmin.sleekforum.com
       - VIRTUAL_HOST=pgadmin.sleekforum.com
+      - VIRTUAL_PORT=5050
       - PGADMIN_DEFAULT_EMAIL=admin
       - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
     ports:
-      - "5000:80"
+      - "5000:5050"
     volumes:
       - pgadmin4:/var/lib/pgadmin
       - pgadmin:/root/.pgadmin
