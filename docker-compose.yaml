@@ -46,8 +46,6 @@ services:
       context: sleekpostgres
     networks:
       - db
-    environment:
-      - POSTGRES_MULTIPLE_DATABASES=sleekfolio,sleekforum
     env_file:
       - ./sleekpostgres/configs/env/postgres.env
     volumes:
