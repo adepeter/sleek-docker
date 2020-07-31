@@ -27,7 +27,7 @@ services:
         dev_env: production
     restart: unless-stopped
     volumes:
-    - "./sleekforum/src:/srv/http/sleekforum:z"
+      - "./sleekforum/src:/srv/http/sleekforum:z"
     environment:
       - SSL_POLICY=Mozilla-Modern
       - SLEEKFORUM_DB_HOST=postgres
@@ -48,10 +48,10 @@ services:
     env_file:
       - ./sleekpostgres/configs/env/postgres.env
     volumes:
-    - "pg_data:/var/lib/postgresql/data"
-    - "./postgres/docker-postgresql-multiple-databases.sh:/docker-entrypoint-initdb.d"
+      - "pg_data:/var/lib/postgresql/data"
+      - "./postgres/docker-postgresql-multiple-databases.sh:/docker-entrypoint-initdb.d"
     ports:
-    - "5432:5432"
+      - "5432:5432"
 
   pgadmin:
     image: dpage/pgadmin4
@@ -61,7 +61,9 @@ services:
       - PGADMIN_DEFAULT_PASSWORD: test
       - PGADMIN_LISTEN_PORT: 80
     ports:
-    - "8080:80"
+      - "8080:80"
+    networks:
+      - db
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -73,18 +75,18 @@ services:
     environment:
       - ENABLE_IPV6=true
     volumes:
-    - "nginx-certs:/etc/nginx/certs"
-    - "nginx-html:/usr/share/nginx/html"
-    - "/var/run/docker.sock:/tmp/docker.sock:ro"
-    - "./sleeknginx/conf.d:/etc/nginx/conf.d"
-    - "./sleeknginx/vhost.d:/etc/nginx/vhost.d"
-    - "./sleekforum/src/static:/srv/ftp/sleekforum/static:z"
-    - "./sleekforum/src/media:/srv/ftp/sleekforum/media:z"
-    - "./sleekfolio/src/static:/srv/ftp/sleekfolio/static:z"
-    - "./sleekfolio/src/media:/srv/ftp/sleekfolio/media:z"
+      - "nginx-certs:/etc/nginx/certs"
+      - "nginx-html:/usr/share/nginx/html"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "./sleeknginx/conf.d:/etc/nginx/conf.d"
+      - "./sleeknginx/vhost.d:/etc/nginx/vhost.d"
+      - "./sleekforum/src/static:/srv/ftp/sleekforum/static:z"
+      - "./sleekforum/src/media:/srv/ftp/sleekforum/media:z"
+      - "./sleekfolio/src/static:/srv/ftp/sleekfolio/static:z"
+      - "./sleekfolio/src/media:/srv/ftp/sleekfolio/media:z"
     ports:
-    - "80:80"
-    - "443:443"
+      - "80:80"
+      - "443:443"
 
   nginx-lets-encrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -95,10 +97,10 @@ services:
     depends_on:
       - nginx-proxy
     volumes:
-    - "nginx-certs:/etc/nginx/certs"
-    - "nginx-html:/usr/share/nginx/html"
-    - "/var/run/docker.sock:/var/run/docker.sock:ro"
-    - "./sleeknginx/vhost.d:/etc/nginx/vhost.d"
+      - "nginx-certs:/etc/nginx/certs"
+      - "nginx-html:/usr/share/nginx/html"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./sleeknginx/vhost.d:/etc/nginx/vhost.d"
 
 
 networks:
