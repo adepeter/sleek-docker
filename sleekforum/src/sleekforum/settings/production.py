@@ -2,6 +2,8 @@ import os
 
 from ._base import *
 
+DEBUG = False
+
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('SLEEKFORUM_DB_ENGINE', 'django.db.backends.postgresql'),
