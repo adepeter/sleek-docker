@@ -62,7 +62,7 @@ services:
       - VIRTUAL_HOST=pgadmin.sleekforum.com
       - LETSENCRYPT_HOST=pgadmin.sleekforum.com
       - VIRTUAL_PORT=5050
-      - PGADMIN_DEFAULT_EMAIL=adepeter
+      - PGADMIN_DEFAULT_EMAIL=adepeter26@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=adepeter
       - PGADMIN_LISTEN_PORT=5050
     volumes:
