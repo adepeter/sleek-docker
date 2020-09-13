@@ -73,6 +73,8 @@ services:
       - webserver
     depends_on:
       - postgres
+    ports:
+      - "5050:5050"
 
   nginx-proxy:
     image: jwilder/nginx-proxy
