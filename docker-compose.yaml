@@ -121,6 +121,7 @@ services:
 
 
 networks:
+  cache:
   db:
   webserver:
 
