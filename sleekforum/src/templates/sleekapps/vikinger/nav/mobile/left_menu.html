@@ -1,0 +1,246 @@
+{% load static %}
+
+<!-- NAVIGATION WIDGET -->
+<nav id="navigation-widget-mobile" class="navigation-widget navigation-widget-mobile sidebar left hidden"
+     data-simplebar>
+    <!-- NAVIGATION WIDGET CLOSE BUTTON -->
+    <div class="navigation-widget-close-button">
+        <!-- NAVIGATION WIDGET CLOSE BUTTON ICON -->
+        <svg class="navigation-widget-close-button-icon icon-back-arrow">
+            <use xlink:href="#svg-back-arrow"></use>
+        </svg>
+        <!-- NAVIGATION WIDGET CLOSE BUTTON ICON -->
+    </div>
+    <!-- /NAVIGATION WIDGET CLOSE BUTTON -->
+
+    {% if request.user.is_authenticated %}
+    <!-- NAVIGATION WIDGET INFO WRAP -->
+    <div class="navigation-widget-info-wrap">
+        <!-- NAVIGATION WIDGET INFO -->
+        <div class="navigation-widget-info">
+            <!-- USER AVATAR -->
+            <a class="user-avatar small no-outline" href="{{ request.user.get_absolute_url }}">
+                <!-- USER AVATAR CONTENT -->
+                <div class="user-avatar-content">
+                    <!-- HEXAGON -->
+                    <div class="hexagon-image-30-32" data-src="{{ request.user.get_avatar }}"></div>
+                    <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR CONTENT -->
+
+                <!-- USER AVATAR PROGRESS -->
+                <div class="user-avatar-progress">
+                    <!-- HEXAGON -->
+                    <div class="hexagon-progress-40-44"></div>
+                    <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS -->
+
+                <!-- USER AVATAR PROGRESS BORDER -->
+                <div class="user-avatar-progress-border">
+                    <!-- HEXAGON -->
+                    <div class="hexagon-border-40-44"></div>
+                    <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS BORDER -->
+
+                <!-- USER AVATAR BADGE -->
+                <div class="user-avatar-badge">
+                    <!-- USER AVATAR BADGE BORDER -->
+                    <div class="user-avatar-badge-border">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-22-24"></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR BADGE BORDER -->
+
+                    <!-- USER AVATAR BADGE CONTENT -->
+                    <div class="user-avatar-badge-content">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-dark-16-18"></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR BADGE CONTENT -->
+
+                    <!-- USER AVATAR BADGE TEXT -->
+                    <p class="user-avatar-badge-text">{{ request.user.post_count | length }}</p>
+                    <!-- /USER AVATAR BADGE TEXT -->
+                </div>
+                <!-- /USER AVATAR BADGE -->
+            </a>
+            <!-- /USER AVATAR -->
+
+            <!-- NAVIGATION WIDGET INFO TITLE -->
+            <p class="navigation-widget-info-title"><a href="{% url 'sleekforum:users:profile:home_profile' %}">{{ request.user.get_display_name }}</a></p>
+            <!-- /NAVIGATION WIDGET INFO TITLE -->
+
+            <!-- NAVIGATION WIDGET INFO TEXT -->
+            <p class="navigation-widget-info-text">Welcome Back!</p>
+            <!-- /NAVIGATION WIDGET INFO TEXT -->
+        </div>
+        <!-- /NAVIGATION WIDGET INFO -->
+
+        <!-- NAVIGATION WIDGET BUTTON -->
+        <a class="navigation-widget-info-button button small secondary" href="{% url 'sleekforum:users:auth:logout' %}">Logout</a>
+        <!-- /NAVIGATION WIDGET BUTTON -->
+    </div>
+    <!-- /NAVIGATION WIDGET INFO WRAP -->
+    {% endif %}
+
+    <!-- NAVIGATION WIDGET SECTION TITLE -->
+    <p class="navigation-widget-section-title">Sections</p>
+    <!-- /NAVIGATION WIDGET SECTION TITLE -->
+
+    <!-- MENU -->
+    <ul class="menu">
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="newsfeed.html">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-newsfeed">
+                    <use xlink:href="#svg-newsfeed"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Blogs
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="{% url 'sleekforum:categories:index' %}">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-grid">
+                    <use xlink:href="#svg-grid"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Category
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="{% url 'sleekforum:users:statistics:users_list' %}">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-members"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Members
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="{% url 'sleekforum:threads:newest_threads' %}">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-events-daily">
+                    <use xlink:href="#svg-events-daily"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Latest
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="{% url 'sleekforum:threads:trending_threads' %}">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-poll">
+                    <use xlink:href="#svg-poll"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Trending
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+    </ul>
+    <!-- /MENU -->
+    {% if request.user.is_authenticated %}
+    <!-- NAVIGATION WIDGET SECTION TITLE -->
+    <p class="navigation-widget-section-title">My Profile</p>
+    <!-- /NAVIGATION WIDGET SECTION TITLE -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{{ request.user.get_absolute_url }}">Profile Info</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="hub-profile-notifications.html">Notifications</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="hub-profile-messages.html">Messages</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION TITLE -->
+    <p class="navigation-widget-section-title">Account</p>
+    <!-- /NAVIGATION WIDGET SECTION TITLE -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{{ request.user.get_profile_edit_url }}">Profile edit</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{{ request.user.get_change_email_url }}">Change e-mail</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{{ request.user.get_change_password_url }}">Change Password</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="hub-account-settings.html">General Settings</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+    {% endif %}
+
+    <!-- NAVIGATION WIDGET SECTION TITLE -->
+    <p class="navigation-widget-section-title">Main Links</p>
+    <!-- /NAVIGATION WIDGET SECTION TITLE -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{% url 'sleekforum:home:home' %}">Home</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{% url 'sleekforum:violations:list_category' %}">Our rules</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{% url 'sleekforum:pages:faq' %}">Faqs</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{% url 'sleekforum:pages:terms' %}">Terms</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{% url 'sleekforum:pages:disclaimer' %}">Disclaimer</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{% url 'sleekforum:pages:about_us' %}">About Us</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{% url 'sleekforum:pages:contact_us' %}">Contact Us</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" href="{% url 'sleekforum:pages:privacy_policy' %}">Privacy Policy</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+</nav>
+<!-- /NAVIGATION WIDGET -->

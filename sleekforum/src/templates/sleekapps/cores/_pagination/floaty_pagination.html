@@ -1,0 +1,34 @@
+{% if is_paginated %}
+
+{% if forloop.counter == 1 %}
+<!-- PAGE ITEMS -->
+<div class="page-items">
+
+    {% if page_obj.number|add:'-4' > 1 %}
+    <!-- PAGE ITEM -->
+    <a class="page-item" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a>
+    <!-- /PAGE ITEM -->
+    {% endif %}
+
+    {% for i in page_obj.paginator.page_range %}
+    {% if page_obj.number == i %}
+    <!-- PAGE ITEM -->
+    <p class="page-item void">{{ i }}</p>
+    <!-- /PAGE ITEM -->
+    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+    <!-- PAGE ITEM -->
+    <a class="page-item" href="?page={{ i }}">{{ i }}</a>
+    <!-- /PAGE ITEM -->
+    {% endif %}
+    {% endfor %}
+
+    {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+    <!-- PAGE ITEM -->
+    <a class="page-item" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a>
+    <!-- /PAGE ITEM -->
+    {% endif %}
+
+</div>
+<!-- /PAGE ITEMS -->
+{% endif %}
+{% endif %}

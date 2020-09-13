@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cores_violation_tags %}
+
+{% block title %}{{ thread.title }} | Report{% endblock %}
+
+{% block content %}
+<!-- CONTENT GRID -->
+<div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="{% static '/img/banner/forums-icon.png' %}" alt="{{ category.get_name }}">
+        <!-- /SECTION BANNER ICON -->
+
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">Report thread</p>
+        <!-- /SECTION BANNER TITLE -->
+
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text">Maintaining sanity is a virtue of this forum!</p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /SECTION BANNER -->
+    <!-- GRID COLUMN -->
+    <div class="account-hub-content">
+
+        <!-- SECTION HEADER -->
+        <div class="section-header">
+            <!-- SECTION HEADER INFO -->
+            <div class="section-header-info">
+                <!-- SECTION PRETITLE -->
+                <p class="section-pretitle">OFFENSIVE THREAD</p>
+                <!-- /SECTION PRETITLE -->
+
+                <!-- SECTION TITLE -->
+                <h2 class="section-title">Reporting - {{ thread.title }}</h2>
+                <!-- /SECTION TITLE -->
+            </div>
+            <!-- /SECTION HEADER INFO -->
+        </div>
+        <!-- /SECTION HEADER -->
+
+        <!-- NOTIFICATION BOX LIST -->
+
+        <div class="widget-box">
+            <div class="notification-box-list">
+                <div class="section-header-info">
+                    <!-- SECTION PRETITLE -->
+                    <p class="section-pretitle">Violated</p>
+                    <!-- /SECTION PRETITLE -->
+
+                    <!-- SECTION TITLE -->
+                    <h2 class="section-title">Rules</h2>
+                    <!-- /SECTION TITLE -->
+                </div>
+                <form method="POST" action="" class="form">
+                    {% csrf_token %}
+                    <small class="text-danger">{{ form.rules.errors }}</small>
+                    {% for field, text in form.rules.field.choices %}
+                    <!-- NOTIFICATION BOX -->
+                    <div class="notification-box">
+                        <!-- USER STATUS -->
+                        <div class="user-status notification">
+                            <!-- USER STATUS TITLE -->
+                            <p class="user-status-title">
+                                {{ text }}
+                            </p>
+                            <!-- /USER STATUS TITLE -->
+
+                            <!-- USER STATUS TIMESTAMP -->
+                            <p class="user-status-timestamp small-space">{{ field | rules_description }}</p>
+                            <!-- /USER STATUS TIMESTAMP -->
+
+                            <!-- USER STATUS ICON -->
+                            <div class="user-status-icon">
+                                <!-- CHECKBOX WRAP -->
+                                <div class="checkbox-wrap">
+                                    <input type="checkbox" id="report_{{ field }}" name="{{ form.rules.name }}"
+                                           value="{{ field.value }}">
+                                    <!-- CHECKBOX BOX -->
+                                    <div class="checkbox-box">
+                                        <!-- ICON CROSS -->
+                                        <svg class="icon-cross">
+                                            <use xlink:href="#svg-cross"></use>
+                                        </svg>
+                                        <!-- /ICON CROSS -->
+                                    </div>
+                                    <!-- /CHECKBOX BOX -->
+                                    <label for="report_{{ field }}">{{ forloop.counter }}</label>
+                                </div>
+                                <!-- /CHECKBOX WRAP -->
+                            </div>
+                            <!-- /USER STATUS ICON -->
+                        </div>
+                        <!-- /USER STATUS -->
+                    </div>
+                    <!-- /NOTIFICATION BOX -->
+                    {% endfor %}
+
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- BUTTON -->
+                            <a href="{{ thread.get_absolute_url }}" class="button full secondary">Return back</a>
+                            <!-- /BUTTON -->
+                        </div>
+                        <!-- /FORM ITEM -->
+
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- BUTTON -->
+                            <button type="submit" class="button full primary">Report thread!</button>
+                            <!-- /BUTTON -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+
+                </form>
+            </div>
+            <!-- /NOTIFICATION BOX LIST -->
+        </div>
+    </div>
+    <!-- /GRID COLUMN -->
+
+</div>
+{% endblock %}

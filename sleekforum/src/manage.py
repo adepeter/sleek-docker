@@ -5,8 +5,9 @@ import sys
 
 
 def main():
-    flyforum_env = os.environ.get('SETTINGS_ENV', 'flyforum_project.settings')
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', flyforum_env)
+    """Run administrative tasks."""
+    sleekforum_environment = os.environ.get('SLEEKFORUM_ENVIRONMENT', 'sleekforum.settings.development')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', sleekforum_environment)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

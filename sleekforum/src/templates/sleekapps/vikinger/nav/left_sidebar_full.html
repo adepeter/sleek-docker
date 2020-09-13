@@ -1,0 +1,194 @@
+{% load static %}
+<!-- NAVIGATION WIDGET -->
+<nav id="navigation-widget" class="navigation-widget navigation-widget-desktop sidebar left hidden" data-simplebar>
+    <!-- NAVIGATION WIDGET COVER -->
+    <figure class="navigation-widget-cover liquid">
+        <img src="{% static 'img/cover/01.jpg' %}" alt="cover-01">
+    </figure>
+    <!-- /NAVIGATION WIDGET COVER -->
+
+    <!-- USER SHORT DESCRIPTION -->
+    <div class="user-short-description">
+        <!-- USER SHORT DESCRIPTION AVATAR -->
+        <a class="user-short-description-avatar user-avatar medium" href="{% url 'sleekforum:users:profile:home_profile' %}">
+            <!-- USER AVATAR BORDER -->
+            <div class="user-avatar-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-120-132"></div>
+                <!-- /HEXAGON -->
+            </div>
+            <!-- /USER AVATAR BORDER -->
+
+            <!-- USER AVATAR CONTENT -->
+            <div class="user-avatar-content">
+                <!-- HEXAGON -->
+                <div class="hexagon-image-82-90" data-src="{{ request.user.get_avatar }}"></div>
+                <!-- /HEXAGON -->
+            </div>
+            <!-- /USER AVATAR CONTENT -->
+
+            <!-- USER AVATAR PROGRESS -->
+            <div class="user-avatar-progress">
+                <!-- HEXAGON -->
+                <div class="hexagon-progress-100-110"></div>
+                <!-- /HEXAGON -->
+            </div>
+            <!-- /USER AVATAR PROGRESS -->
+
+            <!-- USER AVATAR PROGRESS BORDER -->
+            <div class="user-avatar-progress-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-border-100-110"></div>
+                <!-- /HEXAGON -->
+            </div>
+            <!-- /USER AVATAR PROGRESS BORDER -->
+
+            <!-- USER AVATAR BADGE -->
+            <div class="user-avatar-badge">
+                <!-- USER AVATAR BADGE BORDER -->
+                <div class="user-avatar-badge-border">
+                    <!-- HEXAGON -->
+                    <div class="hexagon-32-36"></div>
+                    <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR BADGE BORDER -->
+
+                <!-- USER AVATAR BADGE CONTENT -->
+                <div class="user-avatar-badge-content">
+                    <!-- HEXAGON -->
+                    <div class="hexagon-dark-26-28"></div>
+                    <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR BADGE CONTENT -->
+
+                <!-- USER AVATAR BADGE TEXT -->
+                <p class="user-avatar-badge-text">24</p>
+                <!-- /USER AVATAR BADGE TEXT -->
+            </div>
+            <!-- /USER AVATAR BADGE -->
+        </a>
+        <!-- /USER SHORT DESCRIPTION AVATAR -->
+
+        <!-- USER SHORT DESCRIPTION TITLE -->
+        <p class="user-short-description-title"><a href="{% url 'sleekforum:users:profile:home_profile' %}">{{ request.user.get_display_name }}</a></p>
+        <!-- /USER SHORT DESCRIPTION TITLE -->
+
+        {% if request.user.website %}
+        <!-- USER SHORT DESCRIPTION TEXT -->
+        <p class="user-short-description-text"><a href="{{ request.user.website }}">{{ request.user.website }}</a></p>
+        <!-- /USER SHORT DESCRIPTION TEXT -->
+        {% endif %}
+    </div>
+    <!-- /USER SHORT DESCRIPTION -->
+
+    <!-- USER STATS -->
+    <div class="user-stats">
+        <!-- USER STAT -->
+        <div class="user-stat">
+            <!-- USER STAT TITLE -->
+            <p class="user-stat-title">{{ request.user.posts.count }}</p>
+            <!-- /USER STAT TITLE -->
+
+            <!-- USER STAT TEXT -->
+            <p class="user-stat-text">posts</p>
+            <!-- /USER STAT TEXT -->
+        </div>
+        <!-- /USER STAT -->
+
+        <!-- USER STAT -->
+        <div class="user-stat">
+            <!-- USER STAT TITLE -->
+            <p class="user-stat-title">5.7k</p>
+            <!-- /USER STAT TITLE -->
+
+            <!-- USER STAT TEXT -->
+            <p class="user-stat-text">visits</p>
+            <!-- /USER STAT TEXT -->
+        </div>
+        <!-- /USER STAT -->
+    </div>
+    <!-- /USER STATS -->
+
+    <!-- MENU -->
+    <ul class="menu">
+
+        {% if request.user.is_staff %}
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="{% url 'admin:index' %}">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-settings">
+                    <use xlink:href="#svg-settings"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Admin menu
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+        {% endif %}
+
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="newsfeed.html">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-newsfeed">
+                    <use xlink:href="#svg-newsfeed"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Newsfeed
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="overview.html">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-overview">
+                    <use xlink:href="#svg-overview"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Overview
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="{% url 'sleekforum:users:statistics:users_list' %}">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-members"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Members
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" href="forums.html">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-forums">
+                    <use xlink:href="#svg-forums"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Forums
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+    </ul>
+    <!-- /MENU -->
+</nav>
+<!-- /NAVIGATION WIDGET -->

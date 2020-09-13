@@ -24,7 +24,7 @@ services:
     build:
       context: sleekforum/src
       args:
-        dev_env: production
+        sleekforum_environment: production
     restart: unless-stopped
     volumes:
       - "./sleekforum/src:/srv/http/sleekforum:z"

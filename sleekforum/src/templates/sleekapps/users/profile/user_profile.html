@@ -1,0 +1,489 @@
+{% extends 'users/profile/_includes/profile_base.html' %}
+{% load cores_util_tags %}
+{% load post_tags %}
+{% load reaction_tags %}
+{% load user_tags %}
+
+{% block title %}{{ block.super }} | Profile{% endblock %}
+
+{% block profile_body %}
+<!-- GRID -->
+<div class="grid grid-3-6-3">
+    <!-- GRID COLUMN -->
+    <div class="grid-column">
+        <!-- WIDGET BOX -->
+        <div class="widget-box">
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">About
+                {% if request.user == user %}Me{% else %}{{ user.get_display_name }}{% endif %}
+            </p>
+            <!-- /WIDGET BOX TITLE -->
+
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- PARAGRAPH -->
+                <p class="paragraph">
+                    {{ user.signature }}
+                </p>
+                <!-- /PARAGRAPH -->
+
+                <!-- INFORMATION LINE LIST -->
+                <div class="information-line-list">
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">State</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.state | default:"Not set" }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Country</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.country | default:"Not set" }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    {% if user.dob is not None %}
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Age</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.dob | age_calculator }} years</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+                    {% endif %}
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Web</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text"><a href="{{ user.website }}">{{ user.website | urlize }}</a>
+                        </p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+                </div>
+                <!-- /INFORMATION LINE LIST -->
+            </div>
+            <!-- /WIDGET BOX CONTENT -->
+        </div>
+        <!-- /WIDGET BOX -->
+
+        <!-- WIDGET BOX -->
+        <div class="widget-box">
+
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">Personal Info</p>
+            <!-- /WIDGET BOX TITLE -->
+
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- INFORMATION LINE LIST -->
+                <div class="information-line-list">
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Profile name</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.get_display_name }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Email</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.email }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Username</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.username }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Sex</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.get_sex_display | default:"Not set" }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Birthday</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.dob | date:'jS, F' | default:"Not set" }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+                </div>
+                <!-- /INFORMATION LINE LIST -->
+            </div>
+            <!-- /WIDGET BOX CONTENT -->
+        </div>
+        <!-- /WIDGET BOX -->
+
+    </div>
+    <!-- /GRID COLUMN -->
+
+    <!-- GRID COLUMN -->
+    <div class="grid-column">
+        <!-- WIDGET BOX -->
+        <div class="widget-box">
+
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">Others</p>
+            <!-- /WIDGET BOX TITLE -->
+
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- INFORMATION BLOCK LIST -->
+                <div class="information-block-list">
+                    <!-- INFORMATION BLOCK -->
+                    <div class="information-block">
+                        <!-- INFORMATION BLOCK TITLE -->
+                        <p class="information-block-title">About
+                            {% if user == request.user %}Me{% else %}{{ user.get_display_name }}{% endif %}
+                        </p>
+                        <!-- /INFORMATION BLOCK TITLE -->
+
+                        <!-- INFORMATION BLOCK TEXT -->
+                        <p class="information-block-text">{{ user.about | default:"Description about self not set" }}</p>
+                        <!-- /INFORMATION BLOCK TEXT -->
+                    </div>
+                    <!-- /INFORMATION BLOCK -->
+
+                    <!-- INFORMATION BLOCK -->
+                    <div class="information-block">
+                        <!-- INFORMATION BLOCK TITLE -->
+                        <p class="information-block-title">Address</p>
+                        <!-- /INFORMATION BLOCK TITLE -->
+
+                        <!-- INFORMATION BLOCK TEXT -->
+                        <p class="information-block-text">{{ user.address | default:"No address available" }}</p>
+                        <!-- /INFORMATION BLOCK TEXT -->
+                    </div>
+                    <!-- /INFORMATION BLOCK -->
+
+                    <!-- INFORMATION BLOCK -->
+                    <div class="information-block">
+                        <!-- INFORMATION BLOCK TITLE -->
+                        <p class="information-block-title">Favourites or hobbies</p>
+                        <!-- /INFORMATION BLOCK TITLE -->
+
+                        <!-- INFORMATION BLOCK TEXT -->
+                        <p class="information-block-text">{{ user.hobbies | join:', ' | default:"Not hobbies set" }}</p>
+                        <!-- /INFORMATION BLOCK TEXT -->
+                    </div>
+                    <!-- /INFORMATION BLOCK -->
+
+                    <!-- INFORMATION BLOCK -->
+                    <div class="information-block">
+                        <!-- INFORMATION BLOCK TITLE -->
+                        <p class="information-block-title">Phone Number</p>
+                        <!-- /INFORMATION BLOCK TITLE -->
+
+                        <!-- INFORMATION BLOCK TEXT -->
+                        <p class="information-block-text">{{ user.phone_number | default:"Phone number currently unavailable" }}</p>
+                        <!-- /INFORMATION BLOCK TEXT -->
+                    </div>
+                    <!-- /INFORMATION BLOCK -->
+                </div>
+                <!-- /INFORMATION BLOCK LIST -->
+            </div>
+            <!-- /WIDGET BOX CONTENT -->
+        </div>
+        <!-- /WIDGET BOX -->
+
+        <!-- WIDGET BOX -->
+        <div class="widget-box">
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">Social links</p>
+            <!-- /WIDGET BOX TITLE -->
+
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- TIMELINE INFORMATION LIST -->
+                <div class="timeline-information-list">
+                    <!-- TIMELINE INFORMATION -->
+                    <div class="timeline-information">
+                        <!-- TIMELINE INFORMATION TITLE -->
+                        <p class="timeline-information-title">Facebook</p>
+                        <!-- /TIMELINE INFORMATION TITLE -->
+
+                        <!-- TIMELINE INFORMATION DATE -->
+                        <p class="timeline-information-date">@username</p>
+                        <!-- /TIMELINE INFORMATION DATE -->
+
+                        <!-- TIMELINE INFORMATION TEXT -->
+                        <p class="timeline-information-text">{{ user.facebook | urlize }}</p>
+                        <!-- /TIMELINE INFORMATION TEXT -->
+                    </div>
+                    <!-- /TIMELINE INFORMATION -->
+
+                    <!-- TIMELINE INFORMATION -->
+                    <div class="timeline-information">
+                        <!-- TIMELINE INFORMATION TITLE -->
+                        <p class="timeline-information-title">Twitter</p>
+                        <!-- /TIMELINE INFORMATION TITLE -->
+
+                        <!-- TIMELINE INFORMATION DATE -->
+                        <p class="timeline-information-date">@handle</p>
+                        <!-- /TIMELINE INFORMATION DATE -->
+
+                        <!-- TIMELINE INFORMATION TEXT -->
+                        <p class="timeline-information-text">{{ user.twitter | urlize }}</p>
+                        <!-- /TIMELINE INFORMATION TEXT -->
+                    </div>
+                    <!-- /TIMELINE INFORMATION -->
+
+                    <!-- TIMELINE INFORMATION -->
+                    <div class="timeline-information">
+                        <!-- TIMELINE INFORMATION TITLE -->
+                        <p class="timeline-information-title">Github</p>
+                        <!-- /TIMELINE INFORMATION TITLE -->
+
+                        <!-- TIMELINE INFORMATION DATE -->
+                        <p class="timeline-information-date">@repo</p>
+                        <!-- /TIMELINE INFORMATION DATE -->
+
+                        <!-- TIMELINE INFORMATION TEXT -->
+                        <p class="timeline-information-text">{{ user.repo | urlize }}</p>
+                        <!-- /TIMELINE INFORMATION TEXT -->
+                    </div>
+                    <!-- /TIMELINE INFORMATION -->
+
+                    <!-- TIMELINE INFORMATION -->
+                    <div class="timeline-information">
+                        <!-- TIMELINE INFORMATION TITLE -->
+                        <p class="timeline-information-title">Whatsapp</p>
+                        <!-- /TIMELINE INFORMATION TITLE -->
+
+                        <!-- TIMELINE INFORMATION DATE -->
+                        <p class="timeline-information-date">@number</p>
+                        <!-- /TIMELINE INFORMATION DATE -->
+
+                        <!-- TIMELINE INFORMATION TEXT -->
+                        <p class="timeline-information-text">{{ user.whatsapp }}</p>
+                        <!-- /TIMELINE INFORMATION TEXT -->
+                    </div>
+                    <!-- /TIMELINE INFORMATION -->
+                </div>
+                <!-- /TIMELINE INFORMATION LIST -->
+            </div>
+            <!-- /WIDGET BOX CONTENT -->
+        </div>
+        <!-- /WIDGET BOX -->
+    </div>
+    <!-- /GRID COLUMN -->
+
+    <!-- GRID COLUMN -->
+    <div class="grid-column">
+        <!-- WIDGET BOX -->
+        <div class="widget-box">
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">Important dates</p>
+            <!-- /WIDGET BOX TITLE -->
+
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- INFORMATION LINE LIST -->
+                <div class="information-line-list">
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Joined</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.date_created }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Last seen</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.last_seen | time_ago }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Last login</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.last_login }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Currently</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{ user.online | upper }}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+                </div>
+                <!-- /INFORMATION LINE LIST -->
+            </div>
+            <!-- /WIDGET BOX CONTENT -->
+        </div>
+        <!-- /WIDGET BOX -->
+
+        <!-- WIDGET BOX -->
+        <div class="widget-box">
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">More Stats</p>
+            <!-- /WIDGET BOX TITLE -->
+
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- STAT BLOCK LIST -->
+                <div class="stat-block-list">
+
+                    {% if user.posts.all %}
+                    <!-- STAT BLOCK -->
+                    <div class="stat-block">
+                        <!-- STAT BLOCK DECORATION -->
+                        <div class="stat-block-decoration">
+                            <!-- STAT BLOCK DECORATION ICON -->
+                            <svg class="stat-block-decoration-icon icon-status">
+                                <use xlink:href="#svg-status"></use>
+                            </svg>
+                            <!-- /STAT BLOCK DECORATION ICON -->
+                        </div>
+                        <!-- /STAT BLOCK DECORATION -->
+
+                        <!-- STAT BLOCK INFO -->
+                        <div class="stat-block-info">
+                            <!-- STAT BLOCK TITLE -->
+                            <p class="stat-block-title">Last post update</p>
+                            <!-- /STAT BLOCK TITLE -->
+
+                            <!-- STAT BLOCK TEXT -->
+                            <p class="stat-block-text">{{ user | user_last_post | time_ago }}</p>
+                            <!-- /STAT BLOCK TEXT -->
+                        </div>
+                        <!-- /STAT BLOCK INFO -->
+                    </div>
+                    <!-- /STAT BLOCK -->
+                    {% endif %}
+
+                    <!-- STAT BLOCK -->
+                    <div class="stat-block">
+                        <!-- STAT BLOCK DECORATION -->
+                        <div class="stat-block-decoration">
+                            <!-- STAT BLOCK DECORATION ICON -->
+                            <svg class="stat-block-decoration-icon icon-comment">
+                                <use xlink:href="#svg-comment"></use>
+                            </svg>
+                            <!-- /STAT BLOCK DECORATION ICON -->
+                        </div>
+                        <!-- /STAT BLOCK DECORATION -->
+
+                        <!-- STAT BLOCK INFO -->
+                        <div class="stat-block-info">
+                            <!-- STAT BLOCK TITLE -->
+                            <p class="stat-block-title">Most commented post</p>
+                            <!-- /STAT BLOCK TITLE -->
+
+                            <!-- STAT BLOCK TEXT -->
+                            <p class="stat-block-text">{{ user.post_count | length }} Comment(s)</p>
+                            <!-- /STAT BLOCK TEXT -->
+                        </div>
+                        <!-- /STAT BLOCK INFO -->
+                    </div>
+                    <!-- /STAT BLOCK -->
+
+                    <!-- STAT BLOCK -->
+                    <div class="stat-block">
+                        <!-- STAT BLOCK DECORATION -->
+                        <div class="stat-block-decoration">
+                            <!-- STAT BLOCK DECORATION ICON -->
+                            <svg class="stat-block-decoration-icon icon-thumbs-up">
+                                <use xlink:href="#svg-thumbs-up"></use>
+                            </svg>
+                            <!-- /STAT BLOCK DECORATION ICON -->
+                        </div>
+                        <!-- /STAT BLOCK DECORATION -->
+
+                        <!-- STAT BLOCK INFO -->
+                        <div class="stat-block-info">
+                            <!-- STAT BLOCK TITLE -->
+                            <p class="stat-block-title">Most liked post</p>
+                            <!-- /STAT BLOCK TITLE -->
+
+                            <!-- STAT BLOCK TEXT -->
+                            <p class="stat-block-text">{{ user | reactions_by_user:'LIKE' | length }}</p>
+                            <!-- /STAT BLOCK TEXT -->
+                        </div>
+                        <!-- /STAT BLOCK INFO -->
+                    </div>
+                    <!-- /STAT BLOCK -->
+                </div>
+                <!-- /STAT BLOCK LIST -->
+            </div>
+            <!-- /WIDGET BOX CONTENT -->
+        </div>
+        <!-- /WIDGET BOX -->
+
+
+    </div>
+    <!-- /GRID COLUMN -->
+</div>
+<!-- /GRID -->
+{% endblock %}

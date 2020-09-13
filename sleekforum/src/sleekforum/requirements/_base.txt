@@ -1,0 +1,12 @@
+django
+django-precise-bbcode
+django-violation
+django-graphql-jwt
+django-mptt
+django-redis
+graphene-django
+martor
+pillow
+psycopg2
+redis
+requests

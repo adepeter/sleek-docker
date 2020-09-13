@@ -1,5 +1,0 @@
--r base.txt
-
-coverage
-django-debug-toolbar
-selenium
