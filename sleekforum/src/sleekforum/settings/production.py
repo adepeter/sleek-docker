@@ -4,6 +4,8 @@ from ._base import *
 
 DEBUG = False
 
+ALLOWED_HOSTS = ['sleekforum.com', 'www.sleekforum.com']
+
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('SLEEKFORUM_DB_ENGINE', 'django.db.backends.postgresql'),
@@ -29,3 +31,11 @@ CACHES = {
 }
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_SSL_REDIRECT = True
+
+USE_X_FORWARDED_HOST = True
+
+USE_X_FORWARDED_PORT = True
